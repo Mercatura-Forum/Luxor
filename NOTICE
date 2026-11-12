@@ -1,0 +1,61 @@
+Luxor
+Copyright 2026 Thebes Core Team. Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Dependencies
+------------
+The Thebes Domain Kernel, commit 233e233d2deb19e2928579c698a18ab83ebb3e5c (deps/KERNEL_PIN; see vendor/thebes-kernel/README.md).
+src/vendor/MemphisAuth.mo: copied unchanged from thebes-lib commit 15aaa13b0e859da96e0202ea73c414b1e876fdce, src/MemphisAuth.mo
+  (deps/THEBES_LIB_PIN), https://github.com/Mercatura-Forum/thebes-lib, Apache License 2.0.
+The Thebes SDK (@thebes/sdk), github:Mercatura-Forum/thebes-sdk#0ff37eba76648cc835580df0c5264717d088fb51 (frontend/package.json),
+  https://github.com/Mercatura-Forum/thebes-sdk, Apache License 2.0. Its runtime includes the
+  unmodified @noble/ed25519 3.1.0 (MIT License, (c) 2019 Paul Miller), which the page serves beside
+  the SDK's runtime for a browser without WebCrypto Ed25519.
+src/Sign.mo: the P-256 field and curve arithmetic after the kernel's sig/P256.mo; the nonce per
+  RFC 6979, HMAC per RFC 2104, checked against the RFC 6979 and RFC 4231 test vectors.
+src/Eta.mo: the credit note's shape and serialisation as the Egyptian Tax Authority's e-invoicing
+  SDK specification states them, after Mentat's EtaDocument.mo (https://github.com/Mercatura-Forum/Mentat).
+
+Fonts
+-----
+The page bundles Marcellus, Mulish, Reem Kufi and Cairo from the @fontsource packages, each under the
+SIL Open Font License 1.1 (https://openfontlicense.org).
+
+Photographs
+-----------
+The demo properties' photographs are from Unsplash, used under the Unsplash License
+(https://unsplash.com/license). They are served from this product's own assets and never
+hot-linked. Each is credited below by slot, photographer and source page.
+
+  almar/bay-1: David Vives (@davidvives), https://unsplash.com/photos/ZWeJaV6ToJE
+  almar/bay-villa-1: Yunshuo Qu (@yunshuoqu), https://unsplash.com/photos/cKMz8A5Aytg
+  almar/bay-villa-2: Polina Kuzovkova (@p_kuzovkova), https://unsplash.com/photos/zLCTdR6W8N4
+  almar/bay-villa-3: Philip Ryder Asperas (@pr_photography), https://unsplash.com/photos/397MVbYauEY
+  almar/garden-room-1: Dave Photoz (@mirapolis), https://unsplash.com/photos/6MYm-cUJRB0
+  almar/garden-room-2: Andrew Neel (@andrewtneel), https://unsplash.com/photos/B4rEJ09-Puo
+  almar/garden-room-3: C.H. Yu (@yuu_chien), https://unsplash.com/photos/FGoj66dydYU
+  almar/hero-1: Visual Silence Photography (@visualsilencephotography), https://unsplash.com/photos/JprZwS6bIgg
+  almar/junior-suite-1: Johnny Ho (@johnnyho_ho), https://unsplash.com/photos/J24R8RLPj1A
+  almar/junior-suite-2: Antonio Araujo (@antonioaaaraujo), https://unsplash.com/photos/R1NdTGhd9eM
+  almar/junior-suite-3: Ruben Aster (@ruben_aster), https://unsplash.com/photos/QStrN6Pr4wM
+  almar/pool-1: Evelyn Verdín (@metttanoia), https://unsplash.com/photos/BFsz3ZFBPHw
+  almar/pool-suite-1: Sanju Pandita (@spxclicks), https://unsplash.com/photos/IPusH_J_C3I
+  almar/pool-suite-2: Karol Chomka (@karolchomka), https://unsplash.com/photos/a525FT8hjuA
+  almar/pool-suite-3: Theo Maroulis (@marketing_theo), https://unsplash.com/photos/7jXvvEMNTkc
+  almar/sea-room-1: Wei Feng (@wings017), https://unsplash.com/photos/Vn-6UgF5Vsw
+  almar/sea-room-2: Zeke Whiteout (@izeke), https://unsplash.com/photos/b0W-w1nSvGA
+  almar/sea-room-3: Meg von Haartman (@traveleroohlala), https://unsplash.com/photos/b_tr2-t7AaI
+  almar/terrace-1: Adam Hlásný (@adamhlasny), https://unsplash.com/photos/0dXVrQMsmc8
+  almar/terrace-suite-1: Melina Kiefer (@melimascella_), https://unsplash.com/photos/WKY8XvFeMxI
+  almar/terrace-suite-2: Hi (@million_chopsticks), https://unsplash.com/photos/XY_T51cPzlY
+  almar/terrace-suite-3: Roberto Nickson (@rpnickson), https://unsplash.com/photos/MA82mPIZeGI
+  karnak/courtyard-1: Alberto Domingo Carreiro (@betitop), https://unsplash.com/photos/B00Tk9LFZbo
+  karnak/courtyard-room-1: Antonio Araujo (@antonioaaaraujo), https://unsplash.com/photos/xQbmc2FnK3Y
+  karnak/courtyard-room-2: ubeyonroad (@ubeyonroad), https://unsplash.com/photos/dV-7TJl-x2Y
+  karnak/courtyard-room-3: Antonio Araujo (@antonioaaaraujo), https://unsplash.com/photos/6WYRmkmfuDQ
+  karnak/hero-1: Ale (@goodguyale), https://unsplash.com/photos/otW4L8zWBJA
+  karnak/nile-room-1: Clay Banks (@claybanks), https://unsplash.com/photos/rP0OTFdVaak
+  karnak/nile-room-2: Gabriel Tenan (@tenans_), https://unsplash.com/photos/kU6xGAcd7jQ
+  karnak/nile-room-3: Prateek Katyal (@prateekkatyal), https://unsplash.com/photos/e18Pi-4bVjQ
+  karnak/river-suite-1: Isaac Quesada (@isaacquesada), https://unsplash.com/photos/xc4oxgAbDmw
+  karnak/river-suite-2: Antonio Araujo (@antonioaaaraujo), https://unsplash.com/photos/WWYF8Lts8Ho
+  karnak/river-suite-3: Marin huang (@marinhaung), https://unsplash.com/photos/4jbtOwBRGcY

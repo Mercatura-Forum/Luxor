@@ -1,0 +1,16 @@
+[package]
+name = "luxor"
+version = "0.1.0"
+description = "Luxor: hotel booking and hospitality operations on the Thebes Domain Kernel."
+license = "Apache-2.0"
+
+# Pinned to the kernel's toolchain. The kernel is written against core 2.3.1 / base 0.14.13 at
+# moc 1.4.1, and a mops project resolves one version per package.
+[dependencies]
+core = "2.3.1"
+base = "0.14.13"
+sha2 = "0.1.9"
+libsecp256k1 = "0.1.0"
+
+[toolchain]
+moc = "1.4.1"

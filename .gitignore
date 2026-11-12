@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+.mops/
+__pycache__/
+shots/
+*.log
+.env
+frontend/public/memphis-connect.js
+frontend/public/noble-ed25519-3.1.0.js
+frontend/tsconfig.tsbuildinfo
+# the kernel, when placed here for a build (vendor/thebes-kernel/README.md)
+vendor/thebes-kernel/*
+!vendor/thebes-kernel/README.md

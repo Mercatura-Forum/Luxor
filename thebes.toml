@@ -1,0 +1,41 @@
+# Deployment manifest for thebes-deploy. Replace every placeholder with your own network before deploying.
+#
+# Luxor and its test gateway are set up by their install arguments, which depend on each other, so they
+# are installed in this order:
+#   1  the gateway, with no merchants:  (record { merchants = vec {} })
+#   2  Luxor, with the gateway's contract id in its arguments (below)
+#   3  Luxor's drawMerchantKey: the contract draws its P-256 merchant key from the substrate's randomness
+#      and answers with the public key (04 ‖ x ‖ y, hex); merchantKeyView reads it again
+#   4  the gateway, upgraded with Luxor as its merchant:
+#      (record { merchants = vec { record { merchant = principal "<Luxor>"; publicKey = "<04 ‖ x ‖ y, hex>" } } })
+# The contracts are built with legacy persistence, so an upgrade keeps their state.
+[project]
+name = "luxor"
+default_network = "wan"
+chain_id = 0
+
+[networks.wan]
+validators = ["https://<validator>/deploy-api"]
+boundary = "https://<thebes-gateway>"
+routing = "smart"
+
+[canisters.gateway]
+type = "backend-motoko"
+cid = "auto"
+identity = "<your-identity>"
+wasm = "build/gateway.wasm"
+source = "gateway-test/main.mo"
+build = "mkdir -p build && moc --legacy-persistence $(./tools/packages.sh) -o build/gateway.wasm gateway-test/main.mo"
+init = "(record { merchants = vec {} })"
+
+[canisters.luxor]
+type = "backend-motoko"
+cid = "auto"
+identity = "<your-identity>"
+wasm = "build/luxor.wasm"
+source = "src/Luxor.mo"
+build = "mkdir -p build && moc --legacy-persistence $(./tools/packages.sh) -o build/luxor.wasm src/Luxor.mo"
+# firstDay: the first business day (days since 1970-01-01); gateway: the gateway's contract id;
+# identity: null, or the passkey identity contract with the site's origin and the session audience;
+# firstOwner: the principal that holds the owner role from the first block
+init = "(record { firstDay = <day> : nat; gateway = <gateway id> : nat; identity = null; firstOwner = opt principal \"<owner>\" })"

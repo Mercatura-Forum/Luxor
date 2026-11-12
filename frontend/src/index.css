@@ -1,0 +1,180 @@
+@import 'tailwindcss';
+
+/* Fonts, self-hosted: no third-party font request, and the Arabic faces are chosen, not defaulted. */
+@import '@fontsource/marcellus/400.css';
+@import '@fontsource-variable/mulish';
+@import '@fontsource/reem-kufi/400.css';
+@import '@fontsource/reem-kufi/600.css';
+@import '@fontsource-variable/cairo';
+@import '@fontsource-variable/fraunces';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+@import '@fontsource/ibm-plex-sans-arabic/600.css';
+
+@custom-variant dark (&:where([data-mode='dark'], [data-mode='dark'] *));
+
+/*
+ * THE TENANT TOKENS. Every colour, face, radius and shadow a screen uses comes from here, keyed by
+ * the property (data-tenant) and the mode (data-mode). A property is rebranded by editing its block;
+ * no component names a colour. tools/contrast.mjs checks every text/ground pair below against WCAG AA.
+ */
+:root,
+[data-tenant='almar'] {
+  --lx-bg: #f2ebdd;
+  --lx-surface: #faf7f0;
+  --lx-surface-2: #e9dfcd;
+  --lx-border: #d6c8b0;
+  --lx-field: #848577;
+  --lx-text: #182d2b;
+  --lx-muted: #5a645f;
+  --lx-primary: #1f4e47;
+  --lx-primary-ink: #f5f1e7;
+  --lx-accent: #7d5c14;
+  --lx-ring: #1f4e47;
+  --lx-success: #2f6b3f;
+  --lx-danger: #9b2c2c;
+  --lx-scrim: 12 26 25;
+  --lx-display: 'Marcellus', 'Iowan Old Style', Georgia, serif;
+  --lx-body: 'Mulish Variable', 'Mulish', ui-sans-serif, system-ui, sans-serif;
+  --lx-display-ar: 'Reem Kufi', 'Cairo Variable', serif;
+  --lx-body-ar: 'Cairo Variable', 'Cairo', ui-sans-serif, sans-serif;
+  --lx-radius: 8px;
+  --lx-radius-lg: 14px;
+  --lx-shadow-1: 0 1px 2px rgb(20 40 38 / 0.05), 0 12px 30px -20px rgb(20 40 38 / 0.25);
+  --lx-shadow-2: 0 40px 80px -36px rgb(14 30 28 / 0.42);
+  --lx-grain: 0.035;
+}
+[data-tenant='almar'][data-mode='dark'] {
+  --lx-bg: #0e1c1b;
+  --lx-surface: #142624;
+  --lx-surface-2: #1c302d;
+  --lx-border: #2c423e;
+  --lx-field: #63726c;
+  --lx-text: #ebe8de;
+  --lx-muted: #9aaba5;
+  --lx-primary: #5aa898;
+  --lx-primary-ink: #0c1a19;
+  --lx-accent: #d6b268;
+  --lx-ring: #5aa898;
+  --lx-success: #7cc08e;
+  --lx-danger: #f0a0a0;
+  --lx-scrim: 4 10 10;
+  --lx-shadow-1: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 30px -20px rgb(0 0 0 / 0.5);
+  --lx-shadow-2: 0 40px 84px -36px rgb(0 0 0 / 0.72);
+}
+
+[data-tenant='karnak'] {
+  --lx-bg: #f4f0e8;
+  --lx-surface: #fbf9f4;
+  --lx-surface-2: #e8e1d3;
+  --lx-border: #cfc5b3;
+  --lx-field: #8c877c;
+  --lx-text: #16181b;
+  --lx-muted: #5b5a55;
+  --lx-primary: #16181b;
+  --lx-primary-ink: #f4f0e8;
+  --lx-accent: #92522c;
+  --lx-ring: #92522c;
+  --lx-success: #2f6b3f;
+  --lx-danger: #9b2c2c;
+  --lx-scrim: 14 12 10;
+  --lx-display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --lx-body: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --lx-display-ar: 'IBM Plex Sans Arabic', serif;
+  --lx-body-ar: 'IBM Plex Sans Arabic', ui-sans-serif, sans-serif;
+  --lx-radius: 0px;
+  --lx-radius-lg: 0px;
+  --lx-shadow-1: 0 1px 0 rgb(22 24 27 / 0.08);
+  --lx-shadow-2: 0 30px 60px -30px rgb(22 24 27 / 0.35);
+  --lx-grain: 0.05;
+}
+[data-tenant='karnak'][data-mode='dark'] {
+  --lx-bg: #121315;
+  --lx-surface: #1a1b1e;
+  --lx-surface-2: #232428;
+  --lx-border: #34353a;
+  --lx-field: #6a6868;
+  --lx-text: #ede6da;
+  --lx-muted: #a39d93;
+  --lx-primary: #ede6da;
+  --lx-primary-ink: #121315;
+  --lx-accent: #d9956a;
+  --lx-ring: #d9956a;
+  --lx-success: #7cc08e;
+  --lx-danger: #f0a0a0;
+  --lx-scrim: 0 0 0;
+  --lx-shadow-1: 0 1px 0 rgb(0 0 0 / 0.4);
+  --lx-shadow-2: 0 30px 60px -30px rgb(0 0 0 / 0.8);
+}
+
+@theme inline {
+  --color-bg: var(--lx-bg);
+  --color-surface: var(--lx-surface);
+  --color-surface-2: var(--lx-surface-2);
+  --color-line: var(--lx-border);
+  /* a form field's border: 3:1 against the page (WCAG 1.4.11), where --lx-border is decoration */
+  --color-field: var(--lx-field);
+  --color-ink: var(--lx-text);
+  --color-muted: var(--lx-muted);
+  --color-primary: var(--lx-primary);
+  --color-primary-ink: var(--lx-primary-ink);
+  --color-accent: var(--lx-accent);
+  --color-ring: var(--lx-ring);
+  --color-success: var(--lx-success);
+  --color-danger: var(--lx-danger);
+  --font-display: var(--lx-display);
+  --font-body: var(--lx-body);
+  --radius-base: var(--lx-radius);
+  --radius-lg: var(--lx-radius-lg);
+  --shadow-1: var(--lx-shadow-1);
+  --shadow-2: var(--lx-shadow-2);
+}
+
+[dir='rtl'] {
+  --lx-display: var(--lx-display-ar);
+  --lx-body: var(--lx-body-ar);
+}
+
+html {
+  background: var(--lx-bg);
+  color: var(--lx-text);
+  font-family: var(--lx-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+body { margin: 0; min-height: 100vh; }
+
+/* A fluid type scale of five steps, written once. */
+.t-hero { font-family: var(--lx-display); font-size: clamp(2.4rem, 1.4rem + 4.6vw, 5.4rem); line-height: 1.02; letter-spacing: -0.01em; }
+.t-h1 { font-family: var(--lx-display); font-size: clamp(1.9rem, 1.3rem + 2.2vw, 3rem); line-height: 1.1; }
+.t-h2 { font-family: var(--lx-display); font-size: clamp(1.35rem, 1.1rem + 0.9vw, 1.8rem); line-height: 1.2; }
+.t-body { font-size: 1.0625rem; line-height: 1.6; }
+.t-small { font-size: 0.8125rem; line-height: 1.45; }
+.t-eyebrow { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; }
+[dir='rtl'] .t-eyebrow { letter-spacing: 0; font-size: 0.8rem; }
+
+/* Every amount in tabular figures, so columns of prices line up and totals do not jitter. */
+.nums { font-variant-numeric: tabular-nums lining-nums; }
+
+:focus-visible { outline: 2px solid var(--lx-ring); outline-offset: 2px; border-radius: 2px; }
+
+/* Paper grain over the page ground: the material both tenants share, at the tenant's strength. */
+.grain::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: var(--lx-grain);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.skeleton { background: linear-gradient(90deg, var(--lx-surface-2) 0%, var(--lx-surface) 50%, var(--lx-surface-2) 100%); background-size: 200% 100%; animation: lx-shimmer 1.4s ease-in-out infinite; }
+@keyframes lx-shimmer { from { background-position: 100% 0 } to { background-position: -100% 0 } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+/* printing an invoice: the page alone, on white */
+@media print {
+  [data-sonner-toaster], [data-demo-strip] { display: none !important; }
+  body { background: #fff; }
+}
